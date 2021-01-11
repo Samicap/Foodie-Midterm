@@ -10,8 +10,116 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
-
   <body>
-    <h1>Hello World!</h1>
+    <nav>
+      <h1>FOODIE APP</h1>
+      <div>
+        <p>LOCATION</p>
+        <p>PHONE NUMBER</p>
+      </div>
+    </nav>
+    <main>
+      <div class="menu">
+        <h2>MENU</h2>
+        <div class="apps">
+          <h2>APPETIZERS</h2>
+          <div class="menuItem">
+            <h3>Stuffed Eggplant - $14</h3>
+            <p>
+              Wood oven baked eggplant, topped with ground beef, walnut,
+              pomegranate pasts, and spices
+            </p>
+            <button>ADD</button>
+          </div>
+        </div>
+        <div class="mains">
+          <h2>MAINS</h2>
+          <div class="menuItem">
+            <h3>Ali Nazik Kebab - $30</h3>
+            <p>
+              Wood oven baked eggplant mixed with garlic and yogurt topped with
+              sautéed veal fillet in butter
+            </p>
+            <button>ADD</button>
+          </div>
+        </div>
+        <div class="pides">
+          <h2>PIDES</h2>
+          <div class="menuItem">
+            <h3>Lahmacun - $19</h3>
+            <button>ADD TO CART</button>
+          </div>
+        </div>
+        <div class="desserts">
+          <h2>desserts</h2>
+          <div class="menuItem">
+            <h3>Baklava - $8</h3>
+            <button>ADD TO CART</button>
+          </div>
+        </div>
+      </div>
+      <div class="orderCart">
+        <h2>ORDER CART</h2>
+        <div>
+          <h3>Order Item 1 <button>+</button><button>-</button></h3>
+        </div>
+        <h3>Order Item 2</h3>
+        <h3>Order Item 3</h3>
+        <button>Checkout</button>
+        <h2></h2>
+        <div class="container">
+          <form action="action_page.php">
+            <label for="fname">First Name</label>
+            <input
+              type="text"
+              id="fname"
+              name="firstname"
+              placeholder="Your name.."
+            />
+
+            <label for="lname">Last Name</label>
+            <input
+              type="text"
+              id="lname"
+              name="lastname"
+              placeholder="Your last name.."
+            />
+
+            <label for="lname">Phone Number</label>
+            <input
+              type="text"
+              id="lname"
+              name="lastname"
+              placeholder="Phone Number.."
+            />
+
+            <label for="country">PAYMENT METHOD</label>
+            <select id="country" name="country">
+              <option value="australia">PAYPAL</option>
+              <option value="canada">APPLE PAY</option>
+              <option value="usa">GOOGLE PAY</option>
+            </select>
+
+            <label for="subject">ORDER NOTES</label>
+            <textarea
+              id="subject"
+              name="subject"
+              placeholder="Specify Additional Order Requirements..."
+              style="height: 200px"
+            ></textarea>
+
+            <input type="submit" value="Checkout" />
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div>About Us</div>
+      <div>Contact Us</div>
+      <div>
+        Foodie Designed and Created By: Egenaz Turemis, Samantha Pavlic and
+        Thomas Arthur
+      </div>
+    </footer>
   </body>
 </html>
