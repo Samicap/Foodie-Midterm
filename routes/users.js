@@ -6,11 +6,11 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const menuRoute  = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+  menuRoute.get("/", (req, res) => {
+    db.query(`SELECT * FROM users;`) //change this to dishes
       .then(data => {
         const users = data.rows;
         res.json({ users });
@@ -21,5 +21,11 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-  return router;
+
+  menuRoute.post("/", (req, res) => {
+    // access the user input to the cart.  is this an object?  or a Database access query?
+
+  })
+  return menuRoute;
+
 };
