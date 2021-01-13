@@ -9,12 +9,15 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+const dishDB     = require('./db/helpers/dish_helper')
 
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
 db.connect();
+
+const dishDatabaseHelpers = dishDB(db);
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -47,7 +50,12 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  dishDatabaseHelpers.getAllDishes().then(data => {
+    const dishes = data.rows;
+    const templateVars = {"dishes": dishes};
+    res.render("startpage", templateVars);
+
+  })
 });
 
 app.listen(PORT, () => {
