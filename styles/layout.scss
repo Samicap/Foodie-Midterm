@@ -76,3 +76,15 @@ input[type="submit"]:hover {
   background-color: #f2f2f2;
   padding: 20px;
 }
+
+footer {
+  background-color: #00e9d1;
+  background-image: url("https://www.transparenttextures.com/patterns/beige-paper.png");
+  color: black;
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  height: 5vh;
+  padding: 30px;
+}
