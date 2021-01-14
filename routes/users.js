@@ -14,9 +14,8 @@ module.exports = (db) => {
     dishDatabaseHelpers.getAllDishes();
   });
 
-  // menuRoute.post("/", (req, res) => {
-  //   // access the user input to the cart.  is this an object?  or a Database access query?
 
-  // })
+
+
   return menuRoute;
 };

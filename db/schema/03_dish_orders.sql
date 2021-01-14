@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS dish_orders CASCADE;
 
 CREATE TABLE dish_orders (
   id SERIAL PRIMARY KEY NOT NULL,
+  quantity INTEGER,
   dish_id INTEGER REFERENCES dishes(id) ON DELETE CASCADE,
   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE
 );
