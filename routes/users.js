@@ -8,10 +8,12 @@
 const express = require("express");
 const menuRoute = express.Router();
 const dishDB = require("../db/helpers/dish_helper");
+// const dishOrderDB = require("../db/helpers/dish_orders_helper");
 
 module.exports = (db) => {
+  const dishOrderDatabaseHelpers = dishDB(db);
   menuRoute.get("/", (req, res) => {
-    dishDatabaseHelpers.getAllDishes();
+    dishOrderDatabaseHelpers.getAllDishes();
   });
 
 

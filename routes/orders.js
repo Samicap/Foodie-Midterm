@@ -4,14 +4,16 @@ const orderRoute = express.Router();
 const dishDB = require("../db/helpers/dish_helper");
 const orderDB = require("../db/helpers/order_helper");
 const dishOrderDB = require("../db/helpers/dish_orders_helper");
+// const twilioHelper = require("../db/helpers/twilio_helper");
 const { createOrderId } = require("../db/helpers/order_helper");
 const { createDishOrder } = require("../db/helpers/dish_orders_helper");
-const twilio = require("./twilio_helper");
+// const { twilio } = require("../routes/twilio");
 
 
 module.exports = (db) => {
   const orderDatabaseHelpers = orderDB(db);
   const dishOrderDatabaseHelpers = dishOrderDB(db);
+  // const twilioDatabaseHelpers = twilioHelper(db);
   orderRoute.post("/", (req, res) => {
     // req.body contains an object that the key item is dishes_id and the value is quantity.
     console.log('body', req.body)
@@ -41,7 +43,7 @@ module.exports = (db) => {
           console.log('result is:', result);
           //call fucntion that returns the max time of the dish in an order
           // call twilio keys
-        twilio(phoneNumber, orderId, maxTime)
+          // twilioDatabaseHelpers.twilioHelper(phoneNumber, orderId, maxTime)
         });
       }
 
@@ -54,16 +56,16 @@ module.exports = (db) => {
   orderRoute.get("/:id", (req, res) => {
     // select * from orders, join dish_orders, join dishes,
     // where order_id is = req.params.id
-    const orderId = req.params.id
-    const createOrderReciept = function (orderId) {
-      return db.query(`SELECT *
-                      FROM orders
-                      JOIN dish_orders ON orders.id = order_id
-                      JOIN dishes ON dishes.id = dish_id
-                      WHERE order_id = $1
-                      ;`, [orderId] )
-    }
-    return { createOrderReciept };
+    // const orderId = req.params.id
+    // const createOrderReciept = function (orderId) {
+    //   return db.query(`SELECT *
+    //                   FROM orders
+    //                   JOIN dish_orders ON orders.id = order_id
+    //                   JOIN dishes ON dishes.id = dish_id
+    //                   WHERE order_id = $1
+    //                   ;`, [orderId] )
+    // }
+    // return { createOrderReciept };
     res.render('order_show')
   })
 
