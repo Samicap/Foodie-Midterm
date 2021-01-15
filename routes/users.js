@@ -5,21 +5,19 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const menuRoute = express.Router();
+const dishDB = require("../db/helpers/dish_helper");
+// const dishOrderDB = require("../db/helpers/dish_orders_helper");
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+  const dishOrderDatabaseHelpers = dishDB(db);
+  menuRoute.get("/", (req, res) => {
+    dishOrderDatabaseHelpers.getAllDishes();
   });
-  return router;
+
+
+
+
+  return menuRoute;
 };

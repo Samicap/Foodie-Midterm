@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS dishes CASCADE;
+
+CREATE TABLE dishes (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  price INTEGER NOT NULL DEFAULT 0,
+  photo_url TEXT,
+  prep_time INTEGER NOT NULL DEFAULT 0,
+  description TEXT,
+  in_stock BOOLEAN DEFAULT TRUE,
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
+);

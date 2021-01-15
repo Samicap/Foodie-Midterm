@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js" async></script>
+  </head>
+
+  <body>
+    <nav>
+      <h1>FOODIE APP</h1>
+      <div>
+        <p>LOCATION</p>
+        <p>PHONE NUMBER</p>
+      </div>
+    </nav>
+    <main>
+      <section class="menu">
+        <h2>MENU</h2>
+        <!-- Example Items to add to cart  -->
+        <!-- <section class="container content-section">
+          <h2 class="section-header">MERCH</h2>
+          <div class="shop-items">
+              <div class="shop-item">
+                  <span class="shop-item-title">T-Shirt</span>
+                  <img class="shop-item-image" src="Images/Shirt.png">
+                  <div class="shop-item-details">
+                      <span class="shop-item-price">$19.99</span>
+                      <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                  </div>
+              </div>
+              <div class="shop-item">
+                  <span class="shop-item-title">Coffee Cup</span>
+                  <img class="shop-item-image" src="Images/Cofee.png">
+                  <div class="shop-item-details">
+                      <span class="shop-item-price">$6.99</span>
+                      <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                  </div>
+              </div>
+          </div>
+      </section> -->
+      <!-- Example Items finished -->
+
+      <!-- <section class="container content-section"></section> -->
+      <% for (let i in dishes) { %>
+          <div class="shop-items">
+            <div class="name-price-desc">
+              <h3 class='shop-item-title'>
+                <%= dishes[i].name %></h3>
+              <p class="shop-item-price">$<%= dishes[i].price / 100%></p>
+            </div>
+            <p class="shop-item-details"><%= dishes[i].description%></p>
+            <img class="shop-item-image" src=<%= dishes[i].photo_url %>>
+          </div>
+
+          <button class="btn btn-primary shop-item-button" menu-item="<%=dishes[i].id%>" type="button">ADD TO CART</button>
+        <% } %>
+      </section>
+      <!-- -->
+
+      <div class="order-cart">
+        <!-- <h2>ORDER CART</h2> -->
+
+        <form action="/orders" method="POST">
+        <section class="container content-section">
+          <h2 class="section-header"> ORDER CART</h2>
+          <div class="cart-row">
+          </div>
+          <div class="cart-items">
+
+          </div>
+          <div class="cart-total">
+              <strong class="cart-total-title">Total</strong>
+              <span class="cart-total-price"></span>
+          </div>
+          <button class="btn btn-primary btn-purchase" type="submit">PURCHASE</button>
+            <input
+              type="text"
+              id="pNumber"
+              name="phoneNumber"
+              placeholder="Phone Number..."
+            />
+      </section>
+    </form>
+
+
+
+
+
+        <!-- <div class="Formcontainer">
+          <form action="action_page.php">
+            <label for="fname">First Name</label>
+            <input
+              type="text"
+              id="fname"
+              name="firstname"
+              placeholder="Your name.."
+            />
+
+            <label for="lname">Last Name</label>
+            <input
+              type="text"
+              id="lname"
+              name="lastname"
+              placeholder="Your last name.."
+            />
+
+            <label for="lname">Phone Number</label>
+            <input
+              type="text"
+              id="lname"
+              name="lastname"
+              placeholder="Phone Number.."
+            />
+
+            <label for="country">PAYMENT METHOD</label>
+            <select id="country" name="country">
+              <option value="australia">PAYPAL</option>
+              <option value="canada">APPLE PAY</option>
+              <option value="usa">GOOGLE PAY</option>
+            </select>6
+
+            <label for="subject">ORDER NOTES</label>
+            <textarea
+              id="subject"
+              name="subject"
+              placeholder="Specify Additional Order Requirements..."
+              style="height: 200px"
+            ></textarea>
+
+            <input type="submit" value="Checkout" />
+          </form>
+        </div> -->
+      </div>
+    </main>
+  </body>
+</html>

@@ -9,12 +9,15 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+const dishDB     = require('./db/helpers/dish_helper')
 
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
 db.connect();
+
+const dishDatabaseHelpers = dishDB(db);
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -35,11 +38,15 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
-
+const orderRoutes = require("./routes/orders")
+// const twilio      = require("./routes/twilio");
+// const twilioHelper  = require("./db/helpers/twilio_helper")
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
+app.use("/orders", orderRoutes(db));
+// app.use("/twilio_helper", twilio(db));
 // Note: mount other resources here, using the same pattern above
 
 
@@ -47,7 +54,12 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  dishDatabaseHelpers.getAllDishes().then(data => {
+    const dishes = data.rows;
+    const templateVars = {"dishes": dishes};
+    res.render("startpage", templateVars);
+
+  })
 });
 
 app.listen(PORT, () => {
