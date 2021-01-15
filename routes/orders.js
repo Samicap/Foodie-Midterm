@@ -71,7 +71,7 @@ module.exports = (db) => {
     const orderReceipt = orderReceiptHelpers.createOrderReceipt(req.params.id).then(result => {
       return result.rows;
     });
-    console.log(orderReceipt)
+    // console.log(orderReceipt)
 
     const dish_order = {
       order_id: req.params.id,
