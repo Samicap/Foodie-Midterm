@@ -10,6 +10,8 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const dishDB     = require('./db/helpers/dish_helper')
+const twilio     = require('twilio');
+const { sendSMS } = require('./utils/twilio');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -46,6 +48,30 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
+// ============================================================Twilio stuff==============
+// const accountSid = process.env.TWILIO_ID;
+// const authToken = process.env.TWILIO_TOKEN;
+// const client = new twilio(accountSid, authToken);
+
+// const body = "Hello";
+// const serverTelephoneNumber = '+12898094247';
+// const userTelephoneNumber = '+16472824669';
+
+// const sendSMS = function () {
+
+//   client.messages.create({
+//   body,
+//   from: serverTelephoneNumber,
+//   to: userTelephoneNumber
+//   })
+//   .then(message => console.log(message.sid))
+//   .catch(error => console.log(error))
+// }
+
+
+//===========================================================================================
+
+
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
@@ -53,6 +79,7 @@ app.get("/", (req, res) => {
   dishDatabaseHelpers.getAllDishes().then(data => {
     const dishes = data.rows;
     const templateVars = {"dishes": dishes};
+    sendSMS('hi', '+12898094247', '+16472824669')
     res.render("startpage", templateVars);
 
   })
